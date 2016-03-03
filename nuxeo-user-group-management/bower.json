@@ -1,0 +1,11 @@
+{
+  "name": "nuxeo-user-group-management",
+  "private": true,
+  "dependencies": {
+    "nuxeo-ui-elements": "nuxeo/nuxeo-ui-elements#master"
+  },
+  "resolutions": {
+    "nuxeo-elements": "master",
+    "nuxeo": "master"
+  }
+}
