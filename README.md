@@ -1,4 +1,4 @@
-<!--[![Build Status](https://qa.nuxeo.org/jenkins/buildStatus/icon?job=plugins_nuxeo-web-ui-master-master)](https://qa.nuxeo.org/jenkins/job/plugins_nuxeo-web-ui-master-master/)-->
+[![Build Status](https://qa.nuxeo.org/jenkins/buildStatus/icon?job=plugins_nuxeo-user-group-management-master-6.0)](https://qa.nuxeo.org/jenkins/job/plugins_nuxeo-user-group-management-master-6.0/)
 
 ## Nuxeo User Group Management
 
@@ -37,6 +37,10 @@ To deploy on Nuxeo Platform manually: copy the builded JAR bundles into `$NUXEO_
 # Licensing
 
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
+
+# Note 
+
+This package is offered "as-is" and is not supported by Nuxeo or any affiliated partner.
 
 # About Nuxeo
 
