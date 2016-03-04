@@ -17,7 +17,7 @@
     </copy>
 
     <copy todir="${outdir}/marketplace/install/bundles">
-      <artifact:file key="org.nuxeo.user.group.management:nuxeo-user-group-management" />
+      <artifact:file key="org.nuxeo.web.usergroupmanagement:nuxeo-user-group-management" />
     </copy>
 
     <zip destfile="${outdir}/${maven.project.artifactId}-${maven.project.version}.zip"
