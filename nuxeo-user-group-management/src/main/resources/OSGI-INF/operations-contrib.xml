@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.web.usergroupmanagement.automation.contrib" version="1.0">
+  <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="operations">
+    <operation class="org.nuxeo.web.usergroupmanagement.operations.UserInvite" />
+  </extension>
+</component>
