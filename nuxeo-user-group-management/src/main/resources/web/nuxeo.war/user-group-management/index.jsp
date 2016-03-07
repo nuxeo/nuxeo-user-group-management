@@ -73,6 +73,7 @@ Contributors:
       z-index: 2;
     }
     #container {
+      position: relative;
       background-color: #fff;
       border: 1px solid #ddd;
       width: auto;

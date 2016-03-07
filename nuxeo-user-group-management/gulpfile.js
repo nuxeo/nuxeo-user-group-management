@@ -49,7 +49,7 @@ var bower_components = function(subpath) {
   return !subpath ? BOWER : path.join(BOWER, subpath);
 };
 
-var APP = dist('bower_components/nuxeo-ui-elements')
+var APP = bower_components('nuxeo-ui-elements');
 
 var app = function(subpath) {
   return !subpath ? APP : path.join(APP, subpath);
@@ -81,7 +81,7 @@ gulp.task('vulcanize', function() {
 // Strip unnecessary stuff
 gulp.task('strip', function() {
   return del([
-    dist('bower_components')
+    BOWER
   ]);
 });
 
