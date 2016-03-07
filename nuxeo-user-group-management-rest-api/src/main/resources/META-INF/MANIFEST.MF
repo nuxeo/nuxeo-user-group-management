@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-Vendor: Nuxeo
+Bundle-Version: 0.0.1
+Bundle-Name: nuxeo-user-group-management-rest-api
+Bundle-ManifestVersion: 1
+Bundle-SymbolicName: org.nuxeo.ecm.restapi.server.jaxrs.usergroupmanagement;singleton:=true
+Fragment-Host: org.nuxeo.ecm.platform.restapi.server

@@ -44,7 +44,7 @@ import javax.inject.Inject;
 
 @RunWith(FeaturesRunner.class)
 @Features(PlatformFeature.class)
-@Deploy({ "org.nuxeo.ecm.automation.core", "org.nuxeo.ecm.user.invite", "org.nuxeo.web.usergroupmanagement" })
+@Deploy({ "org.nuxeo.ecm.automation.core", "org.nuxeo.ecm.user.invite", "org.nuxeo.web.usergroupmanagement.core" })
 @RepositoryConfig(init = DefaultRepositoryInit.class, user = "Administrator", cleanup = Granularity.METHOD)
 @LocalDeploy({ "org.nuxeo.ecm.user.invite:test-invite-contrib.xml" })
 public class UserInviteTest {

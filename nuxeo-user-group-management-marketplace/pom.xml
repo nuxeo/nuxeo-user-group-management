@@ -13,6 +13,14 @@
   <dependencies>
     <dependency>
       <groupId>org.nuxeo.web.usergroupmanagement</groupId>
+      <artifactId>nuxeo-user-group-management-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.web.usergroupmanagement</groupId>
+      <artifactId>nuxeo-user-group-management-rest-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.web.usergroupmanagement</groupId>
       <artifactId>nuxeo-user-group-management</artifactId>
     </dependency>
   </dependencies>

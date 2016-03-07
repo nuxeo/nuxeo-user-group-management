@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<component name="org.nuxeo.web.usergroupmanagement.pageproviders.contrib">
+  <extension target="org.nuxeo.ecm.platform.query.api.PageProviderService"
+             point="providers">
+    <genericPageProvider name="nuxeo_groups_members_listing"
+                         class="org.nuxeo.web.usergroupmanagement.providers.GroupMemberPageProvider">
+      <pageSize>20</pageSize>
+    </genericPageProvider>
+  </extension>
+</component>
