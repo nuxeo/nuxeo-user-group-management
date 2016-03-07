@@ -24,8 +24,7 @@ import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
 import org.nuxeo.ecm.automation.core.annotations.Param;
 import org.nuxeo.ecm.core.api.DocumentModel;
-import org.nuxeo.ecm.platform.usermanager.UserAdapter;
-import org.nuxeo.ecm.platform.usermanager.UserAdapterImpl;
+import org.nuxeo.ecm.core.api.NuxeoPrincipal;
 import org.nuxeo.ecm.platform.usermanager.UserManager;
 import org.nuxeo.ecm.user.invite.UserInvitationService;
 import org.nuxeo.ecm.user.invite.UserRegistrationInfo;
@@ -63,8 +62,7 @@ public class UserInvite {
     protected Map<String, Serializable> info = new HashMap<>();
 
     @OperationMethod
-    public String run(DocumentModel userModel) {
-        UserAdapter user = new UserAdapterImpl(userModel, userManager);
+    public String run(NuxeoPrincipal user) {
         DocumentModel invitation = invitationService.getUserRegistrationModel(null);
 
         invitation.setPropertyValue(UserRegistrationInfo.USERNAME_FIELD,  user.getName());
