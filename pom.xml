@@ -16,7 +16,7 @@
   <modules>
     <module>nuxeo-user-group-management-core</module>
     <module>nuxeo-user-group-management-rest-api</module>
-    <module>nuxeo-user-group-management</module>
+    <module>nuxeo-user-group-management-web</module>
     <module>nuxeo-user-group-management-marketplace</module>
   </modules>
 
@@ -43,7 +43,7 @@
       </dependency>
       <dependency>
         <groupId>org.nuxeo.web.usergroupmanagement</groupId>
-        <artifactId>nuxeo-user-group-management</artifactId>
+        <artifactId>nuxeo-user-group-management-web</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
