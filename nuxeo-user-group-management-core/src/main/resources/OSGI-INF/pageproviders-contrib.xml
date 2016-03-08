@@ -2,8 +2,12 @@
 <component name="org.nuxeo.web.usergroupmanagement.pageproviders.contrib">
   <extension target="org.nuxeo.ecm.platform.query.api.PageProviderService"
              point="providers">
-    <genericPageProvider name="nuxeo_groups_members_listing"
-                         class="org.nuxeo.web.usergroupmanagement.providers.GroupMemberPageProvider">
+    <genericPageProvider name="nuxeo_group_member_users_listing"
+                         class="org.nuxeo.web.usergroupmanagement.providers.GroupMemberUsersPageProvider">
+      <pageSize>20</pageSize>
+    </genericPageProvider>
+    <genericPageProvider name="nuxeo_group_member_groups_listing"
+                         class="org.nuxeo.web.usergroupmanagement.providers.GroupMemberGroupsPageProvider">
       <pageSize>20</pageSize>
     </genericPageProvider>
   </extension>

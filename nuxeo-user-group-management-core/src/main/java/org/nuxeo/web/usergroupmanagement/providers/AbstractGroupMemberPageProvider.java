@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.nuxeo.ecm.core.api.NuxeoGroup;
-import org.nuxeo.ecm.core.api.NuxeoPrincipal;
 import org.nuxeo.ecm.platform.query.api.AbstractPageProvider;
 import org.nuxeo.ecm.platform.query.api.PageProvider;
 import org.nuxeo.ecm.platform.usermanager.UserManager;
@@ -32,10 +31,8 @@ import org.nuxeo.runtime.api.Framework;
 /**
  * @since 8.2
  */
-public class GroupMemberPageProvider extends AbstractPageProvider<NuxeoPrincipal>
-    implements PageProvider<NuxeoPrincipal> {
-
-    private static final long serialVersionUID = 1L;
+public abstract class AbstractGroupMemberPageProvider<T> extends AbstractPageProvider<T>
+    implements PageProvider<T> {
 
     protected static int safeLongToInt(long l) {
         if (l < Integer.MIN_VALUE || l > Integer.MAX_VALUE) {
@@ -44,27 +41,34 @@ public class GroupMemberPageProvider extends AbstractPageProvider<NuxeoPrincipal
         return (int) l;
     }
 
-    protected List<NuxeoPrincipal> currentPagePrincipal;
+    protected UserManager userManager;
+
+    protected List<T> currentPage;
 
     @Override
-    public List<NuxeoPrincipal> getCurrentPage() {
-        if (currentPagePrincipal == null) {
-            currentPagePrincipal = new ArrayList<NuxeoPrincipal>();
-            List<String> usernames = ((NuxeoGroup) getParameters()[0]).getMemberUsers();
-            UserManager userManager = Framework.getService(UserManager.class);
+    public List<T> getCurrentPage() {
+        if (currentPage == null) {
+            currentPage = new ArrayList<T>();
+            NuxeoGroup group = (NuxeoGroup) getParameters()[0];
+            List<String> members = getMembers(group);
             int limit = safeLongToInt(getCurrentPageOffset() + getPageSize());
-            if (limit > usernames.size()) {
-                limit = usernames.size();
+            if (limit > members.size()) {
+                limit = members.size();
             }
-            for (String username : usernames.subList(safeLongToInt(getCurrentPageOffset()), limit)) {
-                currentPagePrincipal.add(userManager.getPrincipal(username));
 
+            for (String member : members.subList(safeLongToInt(getCurrentPageOffset()), limit)) {
+                currentPage.add(getMember(member));
             }
-            getPageSize();
-            setResultsCount(usernames.size());
+
+            setResultsCount(members.size());
         }
-        return currentPagePrincipal;
+        return currentPage;
     }
+
+    protected abstract List<String> getMembers(NuxeoGroup group);
+
+    protected abstract T getMember(String id);
+
 
     @Override
     public long getPageLimit() {
@@ -82,7 +86,14 @@ public class GroupMemberPageProvider extends AbstractPageProvider<NuxeoPrincipal
 
     @Override
     protected void pageChanged() {
-        currentPagePrincipal = null;
+        currentPage = null;
         super.pageChanged();
+    }
+
+    protected UserManager getUserManager() {
+        if (userManager == null) {
+            userManager = Framework.getService(UserManager.class);
+        }
+        return userManager;
     }
 }
