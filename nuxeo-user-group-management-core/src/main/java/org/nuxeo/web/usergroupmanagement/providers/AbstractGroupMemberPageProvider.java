@@ -20,8 +20,10 @@
 package org.nuxeo.web.usergroupmanagement.providers;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.nuxeo.ecm.core.api.NuxeoGroup;
 import org.nuxeo.ecm.platform.query.api.AbstractPageProvider;
 import org.nuxeo.ecm.platform.query.api.PageProvider;
@@ -50,7 +52,20 @@ public abstract class AbstractGroupMemberPageProvider<T> extends AbstractPagePro
         if (currentPage == null) {
             currentPage = new ArrayList<T>();
             NuxeoGroup group = (NuxeoGroup) getParameters()[0];
+            String query = (String) getParameters()[1];
             List<String> members = getMembers(group);
+
+            // remove entries not starting with our query
+            if (StringUtils.isNotEmpty(query) && !"*".equals(query)) {
+                query = query.toLowerCase();
+                final Iterator<String> it = members.iterator();
+                while (it.hasNext()) {
+                    if (!it.next().toLowerCase().startsWith(query)) {
+                        it.remove();
+                    }
+                }
+            }
+
             int limit = safeLongToInt(getCurrentPageOffset() + getPageSize());
             if (limit > members.size()) {
                 limit = members.size();
@@ -68,7 +83,6 @@ public abstract class AbstractGroupMemberPageProvider<T> extends AbstractPagePro
     protected abstract List<String> getMembers(NuxeoGroup group);
 
     protected abstract T getMember(String id);
-
 
     @Override
     public long getPageLimit() {
