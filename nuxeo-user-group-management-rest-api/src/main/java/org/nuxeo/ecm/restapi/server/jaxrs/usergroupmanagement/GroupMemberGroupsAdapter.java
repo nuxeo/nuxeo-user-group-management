@@ -19,10 +19,7 @@
 
 package org.nuxeo.ecm.restapi.server.jaxrs.usergroupmanagement;
 
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-import org.nuxeo.ecm.core.api.NuxeoPrincipal;
+import org.nuxeo.ecm.core.api.NuxeoGroup;
 import org.nuxeo.ecm.platform.query.api.PageProviderDefinition;
 import org.nuxeo.ecm.platform.query.api.PageProviderService;
 import org.nuxeo.ecm.restapi.server.jaxrs.adapters.PaginableAdapter;
@@ -30,15 +27,18 @@ import org.nuxeo.ecm.restapi.server.jaxrs.usermanager.GroupObject;
 import org.nuxeo.ecm.webengine.model.WebAdapter;
 import org.nuxeo.runtime.api.Framework;
 
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 /**
  * @since 8.2
  */
-@WebAdapter(name = GroupMemberAdapter.NAME, type = "GroupService")
+@WebAdapter(name = GroupMemberGroupsAdapter.NAME, type = "GroupMemberGroups")
 @Produces({ "application/json+nxentity", MediaType.APPLICATION_JSON })
-public class GroupMemberAdapter extends PaginableAdapter<NuxeoPrincipal> {
+public class GroupMemberGroupsAdapter extends PaginableAdapter<NuxeoGroup> {
 
-    public static final String NAME = "members";
-    public static final String PAGE_PROVIDER_NAME = "nuxeo_groups_members_listing";
+    public static final String NAME = "groups";
+    public static final String PAGE_PROVIDER_NAME = "nuxeo_group_member_groups_listing";
 
     @Override
     protected PageProviderDefinition getPageProviderDefinition() {
