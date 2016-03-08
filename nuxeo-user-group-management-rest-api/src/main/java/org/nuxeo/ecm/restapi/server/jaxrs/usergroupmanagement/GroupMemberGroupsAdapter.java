@@ -40,6 +40,14 @@ public class GroupMemberGroupsAdapter extends PaginableAdapter<NuxeoGroup> {
     public static final String NAME = "groups";
     public static final String PAGE_PROVIDER_NAME = "nuxeo_group_member_groups_listing";
 
+    protected String query;
+
+    @Override
+    protected void initialize(Object... args) {
+        super.initialize(args);
+        query = ctx.getRequest().getParameter("q");
+    }
+
     @Override
     protected PageProviderDefinition getPageProviderDefinition() {
         PageProviderService ppService = Framework.getLocalService(PageProviderService.class);
@@ -48,7 +56,7 @@ public class GroupMemberGroupsAdapter extends PaginableAdapter<NuxeoGroup> {
 
     @Override
     protected Object[] getParams() {
-        return new Object[] { ((GroupObject) getTarget()).doGetArtifact() };
+        return new Object[] { ((GroupObject) getTarget()).doGetArtifact(), query };
     }
 
 }

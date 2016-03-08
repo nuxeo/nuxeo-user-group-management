@@ -103,6 +103,36 @@ public class GroupMemberAdapterTest extends BaseTest {
         }
     }
 
+    @Test
+    public void itCanSearchMemberUsers() throws Exception {
+        MultivaluedMap<String, String> queryParams = new MultivaluedMapImpl();
+        queryParams.putSingle("q", "user");
+        queryParams.putSingle("pageSize", "5");
+        JsonNode node = getResponseAsJson(BaseTest.RequestType.GET, "/group/group1/@users", queryParams);
+        assertPaging(0, 5, 1, 5, 5, node);
+
+        queryParams = new MultivaluedMapImpl();
+        queryParams.putSingle("q", "user1");
+        queryParams.putSingle("pageSize", "5");
+        node = getResponseAsJson(BaseTest.RequestType.GET, "/group/group1/@users", queryParams);
+        assertPaging(0, 5, 1, 1, 1, node);
+    }
+
+    @Test
+    public void itCanSearchMemberGroups() throws Exception {
+        MultivaluedMap<String, String> queryParams = new MultivaluedMapImpl();
+        queryParams.putSingle("q", "subgroup");
+        queryParams.putSingle("pageSize", "5");
+        JsonNode node = getResponseAsJson(BaseTest.RequestType.GET, "/group/group1/@groups", queryParams);
+        assertPaging(0, 5, 1, 5, 5, node);
+
+        queryParams = new MultivaluedMapImpl();
+        queryParams.putSingle("q", "subgroup1");
+        queryParams.putSingle("pageSize", "5");
+        node = getResponseAsJson(BaseTest.RequestType.GET, "/group/group1/@groups", queryParams);
+        assertPaging(0, 5, 1, 1, 1, node);
+    }
+
     private void assertPaging(int currentPageIndex, int pageSize, int numberOfPage, int resultsCount,
         int currentPageSize, JsonNode node) {
         assertTrue(node.get("isPaginable").getBooleanValue());
