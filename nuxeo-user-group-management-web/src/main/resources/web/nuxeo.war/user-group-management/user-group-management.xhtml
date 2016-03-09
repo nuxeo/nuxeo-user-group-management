@@ -1,0 +1,13 @@
+<h:panelGroup layout="block"
+              xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              styleClass="tabsContent">
+
+  <h:outputScript src="bower_components/webcomponentsjs/webcomponents-lite.min.js" target="#{pageJsTarget}" />
+
+  <link rel="import" href="#{baseURL}user-group-management/nuxeo-user-group-management.html"></link>
+
+  <nuxeo-connection id="nx_connection" url="#{baseURL}"></nuxeo-connection>
+  <nuxeo-user-group-management></nuxeo-user-group-management>
+
+</h:panelGroup>

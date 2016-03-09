@@ -1,9 +1,0 @@
-<component name="org.nuxeo.web.usergroupmanagement.authentication.contrib">
-  <extension point="startURL" target="org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService">
-    <startURLPattern>
-      <patterns>
-        <pattern>user-group-management/</pattern>
-      </patterns>
-    </startURLPattern>
-  </extension>
-</component>

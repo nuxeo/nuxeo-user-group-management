@@ -1,0 +1,13 @@
+<component name="org.nuxeo.web.usergroupmanagement.actions.contrib">
+  <require>org.nuxeo.connect.client.actions</require>
+  <extension target="org.nuxeo.ecm.platform.actions.ActionService" point="actions">
+    <action id="UsersGroupsManager" link="/user-group-management/user-group-management.xhtml"
+            type="admin_rest_document_link"
+            label="command.manageMembers" order="45">
+      <category>NUXEO_ADMIN</category>
+      <filter-id>usersGroupsManagementAccess</filter-id>
+      <filter-id>user_manager</filter-id>
+      <filter-id>not_readonly</filter-id>
+    </action>
+  </extension>
+</component>

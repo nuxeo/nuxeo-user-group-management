@@ -25,49 +25,15 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var path = require('path');
 
-var AUTOPREFIXER_BROWSERS = [
-  'ie >= 10',
-  'ie_mob >= 10',
-  'ff >= 30',
-  'chrome >= 34',
-  'safari >= 7',
-  'opera >= 23',
-  'ios >= 7',
-  'android >= 4.4',
-  'bb >= 10'
-];
-
 var DIST = 'target/classes/web/nuxeo.war/user-group-management';
 
 var dist = function(subpath) {
   return !subpath ? DIST : path.join(DIST, subpath);
 };
 
-var BOWER = dist('bower_components');
-
-var bower_components = function(subpath) {
-  return !subpath ? BOWER : path.join(BOWER, subpath);
-};
-
-var APP = bower_components('nuxeo-ui-elements');
-
-var app = function(subpath) {
-  return !subpath ? APP : path.join(APP, subpath);
-};
-
-gulp.task('copy', function() {
-  gulp.src([
-    bower_components('select2/select2.js'),
-    bower_components('select2/select2.css'),
-    bower_components('select2/select2.png'),
-    bower_components('jquery/dist/jquery.js'),
-    bower_components('webcomponentsjs/webcomponents-lite.min.js')
-  ]).pipe(gulp.dest(dist()));
-});
-
 // Vulcanize granular configuration
 gulp.task('vulcanize', function() {
-  return gulp.src(app('nuxeo-user-group-management.html'))
+  return gulp.src(dist('bower_components/nuxeo-ui-elements/nuxeo-user-group-management.html'))
       .pipe($.vulcanize({
         stripComments: true,
         inlineCss: true,
@@ -81,7 +47,8 @@ gulp.task('vulcanize', function() {
 // Strip unnecessary stuff
 gulp.task('strip', function() {
   return del([
-    BOWER
+    dist('bower_components/**'),
+    '!' + dist('bower_components/webcomponentsjs')
   ]);
 });
 
@@ -94,7 +61,6 @@ gulp.task('clean', function() {
 // Build production files, the default task
 gulp.task('default', ['clean'], function(cb) {
   runSequence(
-      'copy',
       'vulcanize',
       'strip',
       cb);

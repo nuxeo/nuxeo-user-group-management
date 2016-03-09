@@ -25,7 +25,7 @@ export default class MANAGEMENT {
   }
 
   static get() {
-    driver.url('/user-group-management');
+    driver.url('/nxadmin/default/default-domain@view_admin?tabIds=NUXEO_ADMIN:UsersGroupsManager');
     driver.waitForExist('nuxeo-user-group-management');
     return new MANAGEMENT();
   }
