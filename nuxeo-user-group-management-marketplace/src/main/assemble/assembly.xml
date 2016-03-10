@@ -16,6 +16,10 @@
       </filterset>
     </copy>
 
+    <copy todir="${outdir}/marketplace/install/lib">
+      <artifact:resolveFile key="com.thetransactioncompany:cors-filter:2.4" />
+    </copy>
+
     <copy todir="${outdir}/marketplace/install/bundles">
       <artifact:file key="org.nuxeo.web.usergroupmanagement:nuxeo-user-group-management-core" />
       <artifact:file key="org.nuxeo.web.usergroupmanagement:nuxeo-user-group-management-rest-api" />
