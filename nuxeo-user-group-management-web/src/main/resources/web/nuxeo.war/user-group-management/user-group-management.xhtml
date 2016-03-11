@@ -5,6 +5,98 @@
 
   <h:outputScript src="bower_components/webcomponentsjs/webcomponents-lite.min.js" target="#{pageJsTarget}" />
 
+  <h:outputScript target="#{pageJsTarget}">
+    window.nuxeo = (function (nuxeo) {
+      nuxeo.I18n = (function(i18n) {
+        var lang = "#{locale.getDefault().getLanguage()}";
+        i18n.language = lang;
+        i18n[lang] = {
+          'label.yes': "#{messages['label.yes']}",
+          'label.no': "#{messages['label.no']}",
+          'label.name': "#{messages['label.name']}",
+          'createAnother.checkbox': "#{messages['createAnother.checkbox']}",
+          'command.create': "#{messages['command.create']}",
+          'command.cancel': "#{messages['command.cancel']}",
+          'command.change.password': "#{messages['command.change.password']}",
+          'command.delete': "#{messages['command.delete']}",
+          'label.security.search': "#{messages['label.security.search']}",
+          'label.security.searchGroups': "#{messages['label.security.searchGroups']}",
+          'title.createUser': "#{messages['title.createUser']}",
+          'username': "#{messages['username']}",
+          'firstName': "#{messages['firstName']}",
+          'lastName': "#{messages['lastName']}",
+          'password': "#{messages['password']}",
+          'password.verify': "#{messages['password.verify']}",
+          'company': "#{messages['company']}",
+          'email': "#{messages['email']}",
+          'label.userManager.users': "#{messages['label.userManager.users']}",
+          'label.userManager.editUser': "#{messages['label.userManager.editUser']}",
+          'label.groupManager.editGroup': "#{messages['label.groupManager.editGroup']}",
+          'title.createGroup': "#{messages['title.createGroup']}",
+          'label.groupManager.groupName': "#{messages['label.groupManager.groupName']}",
+          'label.groupManager.groupLabel': "#{messages['label.groupManager.groupLabel']}",
+          'label.groupManager.groups': "#{messages['label.groupManager.groups']}",
+          'label.security.addToGroup': "#{messages['label.security.addToGroup']}",
+          'label.security.permissions': "#{messages['label.security.permissions']}",
+          'label.userManager.password.changed': "#{messages['label.userManager.password.changed']}",
+
+          'label.immediateCreation': "#{messages['label.immediateCreation']}",
+          'label.permissions.right': "#{messages['label.permissions.right']}",
+          'label.permissions.timeFrame': "#{messages['label.permissions.timeFrame']}",
+          'label.permissions.grantedBy': "#{messages['label.permissions.grantedBy']}",
+          'label.permissions.delete': "#{messages['label.permissions.delete']}",
+          'label.permissions.since': "#{messages['label.permissions.since']}",
+          'label.permissions.until': "#{messages['label.permissions.until']}",
+          'label.permissions.untilMiddle': "#{messages['label.permissions.untilMiddle']}",
+          'label.permissions.permanent': "#{messages['label.permissions.permanent']}",
+          'label.permissions.from': "#{messages['label.permissions.from']}",
+          'action.new.user': "#{messages['action.new.user']}",
+          'action.new.group': "#{messages['action.new.group']}",
+          'label.groupManager.removeUserFromGroup': "#{messages['label.groupManager.removeUserFromGroup']}",
+          'label.groupManager.updated': "#{messages['label.groupManager.updated']}",
+          'label.groupManager.nesteGroups': "#{messages['label.groupManager.nesteGroups']}",
+          'label.groupManager.filterGroups': "#{messages['label.groupManager.filterGroups']}",
+          'label.groupManager.filterUsers': "#{messages['label.groupManager.filterUsers']}",
+          'label.groupManager.addedToGroup': "#{messages['label.groupManager.addedToGroup']}",
+          'label.groupManager.addEntity': "#{messages['label.groupManager.addEntity']}",
+          'label.groupManager.addMembers': "#{messages['label.groupManager.addMembers']}",
+          'label.groupManager.editGroupTitle': "#{messages['label.groupManager.editGroupTitle']}",
+          'label.groupManager.removeUserFromGroupConfirm': "#{messages['label.groupManager.removeUserFromGroupConfirm']}",
+          'label.userManager.password.updated': "#{messages['label.userManager.password.updated']}",
+          'label.userManager.user.updated': "#{messages['label.userManager.user.updated']}",
+          'label.permissions.entityPermissions': "#{messages['label.permissions.entityPermissions']}",
+          'label.permissions.localPermissions': "#{messages['label.permissions.localPermissions']}",
+          'label.userManager.noSearchResults': "#{messages['label.userManager.noSearchResults']}",
+          'label.userManager.addedUserToGroup': "#{messages['label.userManager.addedUserToGroup']}",
+          'label.userManager.removeUserFromGroup': "#{messages['label.userManager.removeUserFromGroup']}",
+          'label.userManager.removeUserFromGroupConfirm': "#{messages['label.userManager.removeUserFromGroupConfirm']}",
+          'label.userManager.removeFrom': "#{messages['label.userManager.removeFrom']}",
+          'label.userManager.remove': "#{messages['label.userManager.remove']}",
+          'label.userManager.memberOf': "#{messages['label.userManager.memberOf']}",
+          'label.userManager.deleteConfirm': "#{messages['label.userManager.deleteConfirm']}",
+          'label.userManager.editUserTitle': "#{messages['label.userManager.editUserTitle']}",
+          'command.saveChanges': "#{messages['command.saveChanges']}",
+          'label.security.identifier': "#{messages['label.security.identifier']}",
+          'label.security.contains': "#{messages['label.security.contains']}",
+          'label.security.emptyGroupSearchResults': "#{messages['label.security.emptyGroupSearchResults']}",
+          'label.security.emptyUserSearchResults': "#{messages['label.security.emptyUserSearchResults']}",
+          'label.security.member': "#{messages['label.security.member']}",
+          'label.security.members': "#{messages['label.security.members']}",
+          'label.security.nesteGroup': "#{messages['label.security.nesteGroup']}",
+          'label.security.nesteGroups': "#{messages['label.security.nesteGroups']}",
+          'label.security.recentUsersAndGroups': "#{messages['label.security.recentUsersAndGroups']}",
+          'label.permissions.deleteConfirm': "#{messages['label.permissions.deleteConfirm']}",
+          'label.permissions.noPermissions': "#{messages['label.permissions.noPermissions']}",
+          'label.permissions.on': "#{messages['label.permissions.on']}",
+          'label.groupManager.members': "#{messages['label.groupManager.members']}",
+          'action.new.usergroup': "#{messages['action.new.usergroup']}"
+        };
+        return i18n;
+      })(nuxeo.I18n || {});
+      return nuxeo;
+    })(window.nuxeo || {});
+  </h:outputScript>
+
   <link rel="import" href="#{baseURL}user-group-management/nuxeo-user-group-management.html"></link>
 
   <nuxeo-connection id="nx_connection" url="#{baseURL}"></nuxeo-connection>
