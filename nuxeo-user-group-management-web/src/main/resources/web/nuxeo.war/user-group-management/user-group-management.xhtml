@@ -99,7 +99,35 @@
 
   <link rel="import" href="#{baseURL}user-group-management/nuxeo-user-group-management.html"></link>
 
+  <style type="text/css">
+    #user-group-management .required {
+      background: none;
+      padding: 0;
+    }
+
+    #user-group-management h1 {
+      margin-bottom: 1em;
+      padding: 0;
+    }
+
+    #user-group-management h1,
+    #user-group-management h2,
+    #user-group-management h3,
+    #user-group-management h4 {
+      border: none;
+    }
+
+    #user-group-management paper-dialog > * {
+      margin-top: 20px !important;
+      padding: 0 24px !important;
+    }
+
+    #user-group-management paper-dialog > *:last-child {
+      margin-bottom: 24px !important;
+    }
+  </style>
+
   <nuxeo-connection id="nx_connection" url="#{baseURL}"></nuxeo-connection>
-  <nuxeo-user-group-management></nuxeo-user-group-management>
+  <nuxeo-user-group-management id="user-group-management"></nuxeo-user-group-management>
 
 </h:panelGroup>
