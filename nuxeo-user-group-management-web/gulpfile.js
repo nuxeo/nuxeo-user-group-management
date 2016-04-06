@@ -44,14 +44,18 @@ gulp.task('vulcanize', function() {
       .pipe($.size({title: 'vulcanize'}));
 });
 
+gulp.task('copy', function() {
+  return gulp.src([dist('bower_components/nuxeo-ui-elements/nuxeo-user-group-management/nuxeo-view-user.html'),
+                   dist('bower_components/nuxeo-ui-elements/nuxeo-user-group-management/nuxeo-edit-user.html')])
+      .pipe(gulp.dest(dist('nuxeo-user-group-management')));
+});
+
 // Strip unnecessary stuff
 gulp.task('strip', function() {
   return del([
-    dist('bower_components/**'),
-    '!' + dist('bower_components/webcomponentsjs')
+    dist('bower_components/**')
   ]);
 });
-
 
 // Clean output directory
 gulp.task('clean', function() {
@@ -62,6 +66,7 @@ gulp.task('clean', function() {
 gulp.task('default', ['clean'], function(cb) {
   runSequence(
       'vulcanize',
+      'copy',
       'strip',
       cb);
 });
