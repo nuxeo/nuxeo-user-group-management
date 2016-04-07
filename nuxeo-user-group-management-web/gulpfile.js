@@ -53,7 +53,10 @@ gulp.task('copy', function() {
 // Strip unnecessary stuff
 gulp.task('strip', function() {
   return del([
-    dist('bower_components/**')
+    dist('bower_components/**'),
+    '!' + dist('bower_components'),
+    '!' + dist('bower_components/webcomponentsjs'),
+    '!' + dist('bower_components/webcomponentsjs/**/*')
   ]);
 });
 

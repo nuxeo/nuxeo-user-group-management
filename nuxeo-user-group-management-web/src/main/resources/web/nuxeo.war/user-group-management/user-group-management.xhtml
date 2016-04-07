@@ -2,8 +2,10 @@
               xmlns="http://www.w3.org/1999/xhtml"
               xmlns:h="http://java.sun.com/jsf/html"
               styleClass="tabsContent">
-
-  <h:outputScript src="bower_components/webcomponentsjs/webcomponents-lite.min.js" target="#{pageJsTarget}" />
+  
+  <script type="text/javascript"
+          src="#{baseURL}user-group-management/bower_components/webcomponentsjs/webcomponents-lite.min.js">
+  </script>
 
   <h:outputScript target="#{pageJsTarget}">
     window.nuxeo = (function (nuxeo) {
