@@ -34,7 +34,10 @@ import org.nuxeo.ecm.core.test.annotations.RepositoryConfig;
 import org.nuxeo.ecm.platform.test.PlatformFeature;
 import org.nuxeo.ecm.platform.usermanager.NuxeoPrincipalImpl;
 import org.nuxeo.ecm.platform.usermanager.UserManager;
+import org.nuxeo.ecm.user.invite.UserInvitationService;
+import org.nuxeo.ecm.user.invite.UserRegistrationConfiguration;
 import org.nuxeo.ecm.user.invite.UserRegistrationInfo;
+import org.nuxeo.runtime.api.Framework;
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
@@ -45,7 +48,7 @@ import javax.inject.Inject;
 @RunWith(FeaturesRunner.class)
 @Features(PlatformFeature.class)
 @Deploy({ "org.nuxeo.ecm.automation.core", "org.nuxeo.ecm.user.invite", "org.nuxeo.web.usergroupmanagement.core" })
-@RepositoryConfig(init = DefaultRepositoryInit.class, user = "Administrator", cleanup = Granularity.METHOD)
+@RepositoryConfig(init = DefaultRepositoryInit.class, cleanup = Granularity.METHOD)
 @LocalDeploy({ "org.nuxeo.ecm.user.invite:test-invite-contrib.xml" })
 public class UserInviteTest {
 
@@ -75,6 +78,8 @@ public class UserInviteTest {
         String invitationId = (String) service.run(ctx, UserInvite.ID);
 
         DocumentModel doc = session.getDocument(new IdRef(invitationId));
-        Assert.assertEquals(user.getName(), doc.getPropertyValue(UserRegistrationInfo.USERNAME_FIELD));
+        UserInvitationService userRegistrationService = Framework.getLocalService(UserInvitationService.class);
+        UserRegistrationConfiguration conf = userRegistrationService.getConfiguration();
+        Assert.assertEquals(user.getName(), doc.getPropertyValue(conf.getUserInfoUsernameField()));
     }
 }

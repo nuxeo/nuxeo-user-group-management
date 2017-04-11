@@ -1,8 +1,0 @@
-<component name="org.nuxeo.web.usergroupmanagement.codec.contrib">
-
-  <extension target="org.nuxeo.ecm.automation.io.services.IOComponent"
-             point="codecs">
-    <codec class="org.nuxeo.web.usergroupmanagement.io.NuxeoPrincipalCodec" />
-  </extension>
-
-</component>

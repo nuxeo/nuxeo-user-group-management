@@ -27,7 +27,9 @@ import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.NuxeoPrincipal;
 import org.nuxeo.ecm.platform.usermanager.UserManager;
 import org.nuxeo.ecm.user.invite.UserInvitationService;
+import org.nuxeo.ecm.user.invite.UserRegistrationConfiguration;
 import org.nuxeo.ecm.user.invite.UserRegistrationInfo;
+import org.nuxeo.runtime.api.Framework;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -64,13 +66,14 @@ public class UserInvite {
     @OperationMethod
     public String run(NuxeoPrincipal user) {
         DocumentModel invitation = invitationService.getUserRegistrationModel(null);
-
-        invitation.setPropertyValue(UserRegistrationInfo.USERNAME_FIELD,  user.getName());
-        invitation.setPropertyValue(UserRegistrationInfo.FIRSTNAME_FIELD, user.getFirstName());
-        invitation.setPropertyValue(UserRegistrationInfo.LASTNAME_FIELD, user.getLastName());
-        invitation.setPropertyValue(UserRegistrationInfo.EMAIL_FIELD,  user.getEmail());
-        invitation.setPropertyValue(UserRegistrationInfo.GROUPS_FIELD, user.getGroups().toArray());
-        invitation.setPropertyValue(UserRegistrationInfo.COMPANY_FIELD, user.getCompany());
+        UserInvitationService userRegistrationService = Framework.getLocalService(UserInvitationService.class);
+        UserRegistrationConfiguration conf = userRegistrationService.getConfiguration();
+        invitation.setPropertyValue(conf.getUserInfoUsernameField(),  user.getName());
+        invitation.setPropertyValue(conf.getUserInfoFirstnameField(), user.getFirstName());
+        invitation.setPropertyValue(conf.getUserInfoLastnameField(), user.getLastName());
+        invitation.setPropertyValue(conf.getUserInfoEmailField(),  user.getEmail());
+        invitation.setPropertyValue(conf.getUserInfoGroupsField(), user.getGroups().toArray());
+        invitation.setPropertyValue(conf.getUserInfoCompanyField(), user.getCompany());
 
         return invitationService.submitRegistrationRequest(invitation, info, validationMethod, autoAccept);
     }

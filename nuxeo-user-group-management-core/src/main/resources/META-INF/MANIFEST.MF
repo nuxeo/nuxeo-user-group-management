@@ -4,6 +4,5 @@ Bundle-Version: 0.0.1
 Bundle-Name: nuxeo-user-group-management-core
 Bundle-ManifestVersion: 1
 Bundle-SymbolicName: org.nuxeo.web.usergroupmanagement.core;singleton:=true
-Nuxeo-Component: OSGI-INF/codec-contrib.xml,
- OSGI-INF/operations-contrib.xml,
+Nuxeo-Component: OSGI-INF/operations-contrib.xml,
  OSGI-INF/pageproviders-contrib.xml
